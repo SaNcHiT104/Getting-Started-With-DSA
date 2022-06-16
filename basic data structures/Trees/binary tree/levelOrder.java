@@ -54,7 +54,7 @@ public class levelOrder {
     public static void levelorder2(Node node) {
         Queue<Node> qu = new LinkedList<>();
         qu.add(node);
-
+        qu.add(null);
         while (qu.size() > 0) {
             int count = qu.size();
             for (int i = 0; i < count; i++) {
@@ -71,30 +71,6 @@ public class levelOrder {
 
         }
 
-    }
-
-    public static void levelorder3(Node root) {
-        Queue<Node> qu = new LinkedList<>();
-        qu.add(root);
-        qu.add(null);
-        while (qu.size() > 0) {
-            if (qu.size() == 1 && qu.peek() == null) { // null nikal rahe hai aur null add krrhe hai , neverEnding loop
-                break;
-            }
-            Node rem = qu.remove();
-            if (rem == null) {
-                qu.add(null);
-                System.out.println();
-            } else {
-                System.out.print(rem.val + " ");
-                if (rem.left != null) {
-                    qu.add(rem.left);
-                }
-                if (rem.right != null) {
-                    qu.add(rem.right);
-                }
-            }
-        }
     }
 
     public static void main(String[] args) {
@@ -137,7 +113,7 @@ public class levelOrder {
 
         }
 
-        levelorder3(root);
+        levelorder2(root);
 
     }
 }

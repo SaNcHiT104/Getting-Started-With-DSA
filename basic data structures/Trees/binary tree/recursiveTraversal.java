@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class levelOrder {
+public class recursiveTraversal {
     public static class Node {
 
         int val;
@@ -36,65 +36,37 @@ public class levelOrder {
         }
     }
 
-    public static void levelorder(Node root) {
-        Queue<Node> qu = new LinkedList<>();
-        qu.add(root);
-        while (qu.size() > 0) {
-            Node rem = qu.remove();
-            System.out.print(rem.val + " ");
-            if (rem.left != null) {
-                qu.add(rem.left);
-            }
-            if (rem.right != null) {
-                qu.add(rem.right);
-            }
+    public static void preOrder(Node root) {
+        if (root == null) {
+            return;
         }
-    }
-
-    public static void levelorder2(Node node) {
-        Queue<Node> qu = new LinkedList<>();
-        qu.add(node);
-
-        while (qu.size() > 0) {
-            int count = qu.size();
-            for (int i = 0; i < count; i++) {
-                node = qu.remove();
-                System.out.print(node.val + " ");
-            }
-            if (node.left != null) {
-                qu.add(node.left);
-            }
-            if (node.right != null) {
-                qu.add(node.right);
-            }
-            System.out.println();
-
-        }
+        System.out.println(root.val);
+        preOrder(root.left);
+        preOrder(root.right);
 
     }
 
-    public static void levelorder3(Node root) {
-        Queue<Node> qu = new LinkedList<>();
-        qu.add(root);
-        qu.add(null);
-        while (qu.size() > 0) {
-            if (qu.size() == 1 && qu.peek() == null) { // null nikal rahe hai aur null add krrhe hai , neverEnding loop
-                break;
-            }
-            Node rem = qu.remove();
-            if (rem == null) {
-                qu.add(null);
-                System.out.println();
-            } else {
-                System.out.print(rem.val + " ");
-                if (rem.left != null) {
-                    qu.add(rem.left);
-                }
-                if (rem.right != null) {
-                    qu.add(rem.right);
-                }
-            }
+    public static void postOrder(Node root) {
+        if (root == null) {
+            return;
         }
+
+        postOrder(root.left);
+
+        postOrder(root.right);
+        System.out.println(root.val);
+
+    }
+
+    public static void inOrder(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        inOrder(root.left);
+        System.out.println(root.val);
+        inOrder(root.right);
+
     }
 
     public static void main(String[] args) {
@@ -136,8 +108,11 @@ public class levelOrder {
             }
 
         }
-
-        levelorder3(root);
+        preOrder(root);
+        System.out.println();
+        inOrder(root);
+        System.out.println();
+        postOrder(root);
 
     }
 }
