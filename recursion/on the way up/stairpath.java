@@ -20,7 +20,7 @@ public class stairpath {
         if (n - 2 >= 0) {
             printStairPaths(n - 2, path + "2");
         }
-        if (n - 2 >= 0) {
+        if (n - 3>= 0) {
             printStairPaths(n - 3, path + "3");
         }
     }
